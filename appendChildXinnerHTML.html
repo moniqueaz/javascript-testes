@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Teste</h1>
+        <table id="tabela" class="table">
+            <tbody>
+                <tr>
+                    <td>Uniforme</td>
+                    <td>Feminino</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>Uniforme</td>
+                    <td>Masculino</td>
+                    <td>130</td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="inner">InnerHTML</button>
+        <button id="append">AppendChild</button>
+        <script>
+            const json = [
+                {"nome":"Chuteira","descricao":"Umbro","preco":171},
+                {"nome":"Meião","descricao":"azul","preco":15}
+            ];
+            document.querySelector('#inner').onclick = () => {
+                document.querySelector('#tabela tbody')
+                    .innerHTML = json.map(elemento => {
+                        return `<tr><td>${elemento.nome}</td></tr>`;
+                }).join('');
+            }
+            document.querySelector('#append').onclick = () => {
+                json.map(elemento => {
+                    criarTabela(elemento);
+                })
+            }
+            
+            function criarTabela(elemento){
+                let tr = document.createElement('tr');
+                let td_nome = document.createElement('td');
+                let td_desc = document.createElement('td');
+                let td_preco = document.createElement('td');
+                
+                td_nome.appendChild(document.createTextNode(elemento.nome));
+                td_desc.appendChild(document.createTextNode(elemento.descricao));
+                td_preco.appendChild(document.createTextNode(elemento.preco));
+                
+                tr.appendChild(td_nome);
+                tr.appendChild(td_desc);
+                tr.appendChild(td_preco);
+
+                return document.querySelector('#tabela tbody').appendChild(tr);
+            }
+        </script>
+    
+</body>
+</html>
