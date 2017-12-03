@@ -1,0 +1,7 @@
+#TouchScroller div.scrollableArea *{
+	position: relative;
+	display: block;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
